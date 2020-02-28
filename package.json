@@ -6,7 +6,11 @@
   "scripts": {
     "react-dev": "webpack -d --watch",
     "start": "nodemon server/index.js",
-    "test": "jest"
+    "test": "jest",
+    "stress1": "k6 run --vus 1 --duration 60s script.js",
+    "stress10": "k6 run --vus 10 --duration 60s script.js",
+    "stress100": "k6 run --vus 100 --duration 60s script.js",
+    "stress1k": "k6 run --vus 1000 --duration 60s script.js"
   },
   "repository": {
     "type": "git",
@@ -20,31 +24,17 @@
   },
   "homepage": "https://github.com/hacker-home/Airbnb-info-proxys#readme",
   "devDependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
-    "@babel/preset-react": "^7.0.0",
-    "babel-cli": "^6.26.0",
-    "babel-loader": "^8.0.6",
-    "babel-preset-env": "^1.7.0",
-    "css-loader": "^2.1.1",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.13.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
-    "jest": "^24.8.0",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.31.0",
-    "webpack-cli": "^3.3.2"
+    "nodemon": "^2.0.2"
   },
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "axios": "^0.19.2",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "mongoose": "^5.5.9",
-    "mysql": "^2.17.1",
-    "nodemon": "^1.19.0"
+    "newrelic": "^6.4.1"
   }
 }

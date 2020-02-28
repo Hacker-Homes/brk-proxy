@@ -1,47 +1,40 @@
+require('newrelic');
+
 const express = require('express');
 const path = require('path');
-const app = express();
-var cors = require('cors')
-app.use(cors())
+const axios = require('axios');
+var cors = require('cors');
 
+const app = express();
+
+app.use(cors())
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/../public'));
 
-// app.get('/:id', function(req, res) {
-//     res.sendFile(path.join(__dirname, '/../public/index.html'));
-// });
-
-
-app.get('/photos/:listingID', (req, res) => {
-    const { listingID } = req.params;
-    res.redirect(`http://localhost:3001/photos/${listingID}`);
-});
-
-app.get('/listings/:id', (req, res) => {
-    const { id} = req.params;
-    res.redirect(`http://localhost:3002/listings/${id}`);
-});
-
-app.get('/room/:id', (req, res) => {
-    const { id} = req.params;
-    res.redirect(`http://localhost:3003/room/${id}`);
+app.get('/api/listing/:id', (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  axios.get(`http://34.215.142.111/api/listing/${id}`)
+    .then((response) => {
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.get('/booking/:id', (req, res) => {
-    const { id} = req.params;
-    res.redirect(`http://localhost:3003/booking/${id}`);
+  const { id } = req.params;
+  res.redirect(`http://localhost:3003/booking/${id}`);
 });
 
 app.get('/reviews/:room_id', (req, res) => {
-    const { room_id} = req.params;
-    res.redirect(`http://localhost:3004/reviews/${room_id}`);
-});
-
-app.get('/MoreHomes/:listingID', (req, res) => {
-    const { listingID} = req.params;
-    res.redirect(`http://localhost:3005/MoreHomes/${listingID}`);
+  const { room_id } = req.params;
+  res.redirect(`http://localhost:3004/reviews/${room_id}`);
 });
 
 
-app.listen(3010, function() {
-    console.log('listening on port 3010!');
-  }); 
+app.listen(3010, function () {
+  console.log('listening on port 3010!');
+});
