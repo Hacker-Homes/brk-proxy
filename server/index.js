@@ -14,8 +14,7 @@ app.use(express.static(__dirname + '/../public'));
 
 app.get('/api/listing/:id', (req, res) => {
   const { id } = req.params;
-  console.log(id);
-  axios.get(`http://34.215.142.111/api/listing/${id}`)
+  axios.get(`http://18.237.70.110/api/listing/${id}`)
     .then((response) => {
       res.send(response.data);
     })
@@ -24,15 +23,18 @@ app.get('/api/listing/:id', (req, res) => {
     });
 });
 
-app.get('/booking/:id', (req, res) => {
-  const { id } = req.params;
-  res.redirect(`http://localhost:3003/booking/${id}`);
-});
+// app.get('/room', (req, res, next) => {
+//   axios.get('http://35.155.225.182/room?id' + req.url)
+//     .then((response) => {
+//       res.send(response.data);
+//     })
+//     .catch((e) => res.sendStatus(500));
+// });
 
-app.get('/reviews/:room_id', (req, res) => {
-  const { room_id } = req.params;
-  res.redirect(`http://localhost:3004/reviews/${room_id}`);
-});
+// app.get('/reviews/:room_id', (req, res) => {
+//   const { room_id } = req.params;
+//   res.redirect(`http://44.233.243.134/api/reviews/${room_id}`);
+// });
 
 
 app.listen(3010, function () {
