@@ -14,7 +14,7 @@ app.use(express.static(__dirname + '/../public'));
 
 app.get('/api/listing/:id', (req, res) => {
   const { id } = req.params;
-  axios.get(`http://18.237.70.110/api/listing/${id}`)
+  axios.get(`http://34.222.43.31/api/listing/${id}`)
     .then((response) => {
       res.send(response.data);
     })
